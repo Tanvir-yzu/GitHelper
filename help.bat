@@ -1,31 +1,46 @@
 @echo off
-REM GitHub repository management script with menu options
+REM GitHub repository management script with modern UI and colors
 
 :: Enable UTF-8 for box-drawing UI
 chcp 65001 >nul
 if %ERRORLEVEL% neq 0 (
-    echo Warning: Unable to set UTF-8 encoding. Some characters may not display correctly.
+    echo [Warning] Unable to set UTF-8 encoding. Some characters may not display correctly.
 )
 
+:: Define cmd.exe color codes
+set "COLOR_RESET="
+set "COLOR_RED=9C"
+set "COLOR_GREEN=2A"
+set "COLOR_YELLOW=6E"
+set "COLOR_BLUE=1F"
+set "COLOR_CYAN=3F"
+set "COLOR_WHITE=F0"
+
 :menu
+cls
+echo.
 echo ============================================
-echo Git Branch Management
+echo          Git Branch Management           
 echo ============================================
 echo 1. Current Git branch check
 echo 2. Create a new branch
-echo 3. Exit
+echo 3. Show all branches
+echo 0. Exit
 echo ============================================
-set /p choice=Enter your choice [1-3]: 
+set /p choice=Enter your choice [0-3]: 
 
 if "%choice%"=="1" goto check_branch
 if "%choice%"=="2" goto create_branch
-if "%choice%"=="3" goto exit_script
+if "%choice%"=="3" goto show_all_branches
+if "%choice%"=="0" goto exit_script
 
 echo Invalid choice. Please select a valid option.
 echo.
+pause
 goto menu
 
 :check_branch
+cls
 echo.
 echo Checking current branch...
 for /f "delims=" %%B in ('git rev-parse --abbrev-ref HEAD') do set CURRENT_BRANCH=%%B
@@ -39,6 +54,7 @@ pause
 goto menu
 
 :create_branch
+cls
 echo.
 set /p branch_name=Enter the name of the new branch: 
 if "%branch_name%"=="" (
@@ -47,6 +63,7 @@ if "%branch_name%"=="" (
     pause
     goto menu
 )
+echo Creating branch "%branch_name%"...
 git branch "%branch_name%"
 if errorlevel 1 (
     echo Branch creation failed. Please check for errors.
@@ -59,6 +76,22 @@ echo.
 pause
 goto menu
 
+:show_all_branches
+cls
+echo.
+echo Listing all branches...
+git branch -a
+if errorlevel 1 (
+    echo Error: Unable to list branches. Please check for errors.
+    echo.
+    pause
+    goto menu
+)
+echo.
+pause
+goto menu
+
 :exit_script
+cls
 echo Exiting script. Goodbye!
 exit /b 0
