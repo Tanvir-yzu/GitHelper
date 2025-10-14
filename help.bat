@@ -25,6 +25,7 @@ echo ============================================
 echo 1. Current Git branch check
 echo 2. Create a new branch
 echo 3. Show all branches
+echo 4. Change branch
 echo 0. Exit
 echo ============================================
 set /p choice=Enter your choice [0-3]: 
@@ -32,6 +33,7 @@ set /p choice=Enter your choice [0-3]:
 if "%choice%"=="1" goto check_branch
 if "%choice%"=="2" goto create_branch
 if "%choice%"=="3" goto show_all_branches
+if "%choice%"=="4" goto change_branch
 if "%choice%"=="0" goto exit_script
 
 echo Invalid choice. Please select a valid option.
@@ -87,6 +89,29 @@ if errorlevel 1 (
     pause
     goto menu
 )
+echo.
+pause
+goto menu
+
+:change_branch
+cls
+echo.
+set /p branch_name=Enter the name of the branch to switch to: 
+if "%branch_name%"=="" (
+    echo Error: Branch name cannot be empty.
+    echo.
+    pause
+    goto menu
+)
+echo Switching to branch "%branch_name%"...
+git checkout "%branch_name%"
+if errorlevel 1 (
+    echo Branch switch failed. Please check for errors.
+    echo.
+    pause
+    goto menu
+)
+echo Branch "%branch_name%" switched successfully.
 echo.
 pause
 goto menu
