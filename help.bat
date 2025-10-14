@@ -22,7 +22,7 @@ set "ICON_STEP=»"
 set "SEP_LINE=────────────────────────────────────"
 
 :menu
-cls
+cls   
 echo.
 echo ============================================
 echo          Git Branch Management           
@@ -103,6 +103,17 @@ goto menu
 :change_branch
 cls
 echo.
+echo Checking current branch...
+for /f "delims=" %%B in ('git rev-parse --abbrev-ref HEAD') do set CURRENT_BRANCH=%%B
+if defined CURRENT_BRANCH (
+    echo Current branch is: %CURRENT_BRANCH%
+) else (
+    echo Error: Unable to determine the current branch.
+    echo.
+    pause
+    goto menu
+)
+echo.
 set /p branch_name=Enter the name of the branch to switch to: 
 if "%branch_name%"=="" (
     echo Error: Branch name cannot be empty.
@@ -126,14 +137,25 @@ goto menu
 :merge_branch
 cls
 echo.
-set /p branch_name=Enter the name of the branch to merge into: 
+echo Checking current branch...
+for /f "delims=" %%B in ('git rev-parse --abbrev-ref HEAD') do set CURRENT_BRANCH=%%B
+if defined CURRENT_BRANCH (
+    echo You are currently on branch: %CURRENT_BRANCH%
+) else (
+    echo Error: Unable to determine the current branch.
+    echo.
+    pause
+    goto menu
+)
+echo.
+set /p branch_name=Enter the name of the branch to merge into "%CURRENT_BRANCH%": 
 if "%branch_name%"=="" (
     echo Error: Branch name cannot be empty.
     echo.
     pause
     goto menu
 )
-echo Merging branch "%branch_name%"...
+echo Merging branch "%branch_name%" into "%CURRENT_BRANCH%"...
 git merge "%branch_name%"
 if errorlevel 1 (
     echo Branch merge failed. Please check for errors.
@@ -141,7 +163,7 @@ if errorlevel 1 (
     pause
     goto menu
 )
-echo Branch "%branch_name%" merged successfully.
+echo Branch "%branch_name%" successfully merged into "%CURRENT_BRANCH%".
 echo.
 pause
 goto menu
