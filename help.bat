@@ -21,6 +21,14 @@ set "ICON_WARN=[33m⚠[0m"
 set "ICON_STEP=[36m»[0m"
 set "SEP_LINE=[36m────────────────────────────────────[0m"
 
+:: Watermark text
+cls
+echo.
+echo ============================================
+echo           GitHelper - Simplify Your Git Workflow
+echo ============================================
+echo.
+
 :menu
 cls
 echo.
@@ -92,14 +100,19 @@ goto menu
 :show_all_branches
 cls
 echo.
-echo Listing all branches...
+echo %SEP_LINE%
+echo          %COLOR_CYAN%Git Branch Listing%COLOR_RESET%
+echo %SEP_LINE%
+echo %ICON_STEP% %COLOR_YELLOW%Listing all branches...%COLOR_RESET%
 git branch -a
 if errorlevel 1 (
-    echo Error: Unable to list branches. Please check for errors.
+    echo %ICON_FAIL% %COLOR_RED%Error: Unable to list branches. Please check for errors.%COLOR_RESET%
     echo.
     pause
     goto menu
 )
+echo %SEP_LINE%
+echo %ICON_OK% %COLOR_GREEN%Branch listing completed successfully.%COLOR_RESET%
 echo.
 pause
 goto menu
@@ -198,6 +211,7 @@ goto menu
 cls
 echo.
 echo %SEP_LINE%
-echo %COLOR_CYAN%Exiting script. Goodbye!%COLOR_RESET%
+echo %COLOR_CYAN% Exiting script. Goodbye!%COLOR_RESET%
+echo %COLOR_YELLOW% Made by Tanvir%COLOR_RESET%
 echo %SEP_LINE%
-exit /b 0
+exit /b 0 
