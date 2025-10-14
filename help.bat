@@ -34,7 +34,7 @@ echo 4. Change branch
 echo 5. Branch Merging
 echo 0. Exit
 echo ============================================
-set /p choice=Enter your choice [0-3]: 
+set /p choice=Enter your choice [0-5]: 
 
 if "%choice%"=="1" goto check_branch
 if "%choice%"=="2" goto create_branch
