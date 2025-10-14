@@ -158,6 +158,16 @@ if defined CURRENT_BRANCH (
     goto menu
 )
 echo.
+echo Listing all available branches...
+setlocal enabledelayedexpansion
+set branch_count=0
+for /f "delims=" %%B in ('git branch --format="%%(refname:short)"') do (
+    set /a branch_count+=1
+    echo %%B
+)
+echo Total branches available: !branch_count!
+endlocal
+echo.
 set /p branch_name=Enter the name of the branch to merge into "%CURRENT_BRANCH%": 
 if "%branch_name%"=="" (
     echo Error: Branch name cannot be empty.
