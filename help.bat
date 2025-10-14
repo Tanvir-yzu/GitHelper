@@ -26,6 +26,7 @@ echo 1. Current Git branch check
 echo 2. Create a new branch
 echo 3. Show all branches
 echo 4. Change branch
+echo 5. Branch Merging
 echo 0. Exit
 echo ============================================
 set /p choice=Enter your choice [0-3]: 
@@ -35,6 +36,7 @@ if "%choice%"=="2" goto create_branch
 if "%choice%"=="3" goto show_all_branches
 if "%choice%"=="4" goto change_branch
 if "%choice%"=="0" goto exit_script
+if "%choice%"=="5" goto merge_branch
 
 echo Invalid choice. Please select a valid option.
 echo.
@@ -115,6 +117,31 @@ echo Branch "%branch_name%" switched successfully.
 echo.
 pause
 goto menu
+
+:merge_branch
+cls
+echo.
+set /p branch_name=Enter the name of the branch to merge into: 
+if "%branch_name%"=="" (
+    echo Error: Branch name cannot be empty.
+    echo.
+    pause
+    goto menu
+)
+echo Merging branch "%branch_name%"...
+git merge "%branch_name%"
+if errorlevel 1 (
+    echo Branch merge failed. Please check for errors.
+    echo.
+    pause
+    goto menu
+)
+echo Branch "%branch_name%" merged successfully.
+echo.
+pause
+goto menu
+
+
 
 :exit_script
 cls
