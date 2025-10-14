@@ -14,6 +14,13 @@ set "COLOR_YELLOW=[33m"
 set "COLOR_CYAN=[36m"
 set "COLOR_RESET=[0m"
 
+:: UI icons and separators
+set "ICON_OK=✔"
+set "ICON_FAIL=✖"
+set "ICON_WARN=⚠"
+set "ICON_STEP=»"
+set "SEP_LINE=────────────────────────────────────"
+
 :menu
 cls
 echo.
