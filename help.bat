@@ -7,7 +7,7 @@ if %ERRORLEVEL% neq 0 (
     echo [Warning] Unable to set UTF-8 encoding. Some characters may not display correctly.
 )
 
-:: Define cmd.exe color codes
+:: Define ANSI color codes for modern UI
 set "COLOR_RED=[31m"
 set "COLOR_GREEN=[32m"
 set "COLOR_YELLOW=[33m"
@@ -15,26 +15,26 @@ set "COLOR_CYAN=[36m"
 set "COLOR_RESET=[0m"
 
 :: UI icons and separators
-set "ICON_OK=✔"
-set "ICON_FAIL=✖"
-set "ICON_WARN=⚠"
-set "ICON_STEP=»"
-set "SEP_LINE=────────────────────────────────────"
+set "ICON_OK=[32m✔[0m"
+set "ICON_FAIL=[31m✖[0m"
+set "ICON_WARN=[33m⚠[0m"
+set "ICON_STEP=[36m»[0m"
+set "SEP_LINE=[36m────────────────────────────────────[0m"
 
 :menu
-cls   
+cls
 echo.
-echo ============================================
-echo          Git Branch Management           
-echo ============================================
-echo 1. Current Git branch check
-echo 2. Create a new branch
-echo 3. Show all branches
-echo 4. Change branch
-echo 5. Branch Merging
-echo 0. Exit
-echo ============================================
-set /p choice=Enter your choice [0-5]: 
+echo %SEP_LINE%
+echo          %COLOR_CYAN%Git Branch Management%COLOR_RESET%
+echo %SEP_LINE%
+echo %COLOR_GREEN%1.%COLOR_RESET% Current Git branch check
+echo %COLOR_GREEN%2.%COLOR_RESET% Create a new branch
+echo %COLOR_GREEN%3.%COLOR_RESET% Show all branches
+echo %COLOR_GREEN%4.%COLOR_RESET% Change branch
+echo %COLOR_GREEN%5.%COLOR_RESET% Branch Merging
+echo %COLOR_GREEN%0.%COLOR_RESET% Exit
+echo %SEP_LINE%
+set /p choice=%COLOR_YELLOW%Enter your choice [0-5]: %COLOR_RESET%
 
 if "%choice%"=="1" goto check_branch
 if "%choice%"=="2" goto create_branch
@@ -51,13 +51,17 @@ goto menu
 :check_branch
 cls
 echo.
-echo Checking current branch...
+echo %SEP_LINE%
+echo          %COLOR_CYAN%Git Branch Checker%COLOR_RESET%
+echo %SEP_LINE%
+echo %ICON_STEP% %COLOR_YELLOW%Checking the current branch...%COLOR_RESET%
 for /f "delims=" %%B in ('git rev-parse --abbrev-ref HEAD') do set CURRENT_BRANCH=%%B
 if defined CURRENT_BRANCH (
-    echo Current branch is: %CURRENT_BRANCH%
+    echo %ICON_OK% %COLOR_GREEN% You are currently on branch: %CURRENT_BRANCH%%COLOR_RESET%
 ) else (
-    echo Error: Unable to determine the current branch.
+    echo %ICON_FAIL% %COLOR_RED% Error: Unable to determine the current branch.%COLOR_RESET%
 )
+echo %SEP_LINE%
 echo.
 pause
 goto menu
@@ -192,5 +196,8 @@ goto menu
 
 :exit_script
 cls
-echo Exiting script. Goodbye!
+echo.
+echo %SEP_LINE%
+echo %COLOR_CYAN%Exiting script. Goodbye!%COLOR_RESET%
+echo %SEP_LINE%
 exit /b 0
