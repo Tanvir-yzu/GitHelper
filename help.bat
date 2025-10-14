@@ -8,13 +8,11 @@ if %ERRORLEVEL% neq 0 (
 )
 
 :: Define cmd.exe color codes
-set "COLOR_RESET="
-set "COLOR_RED=9C"
-set "COLOR_GREEN=2A"
-set "COLOR_YELLOW=6E"
-set "COLOR_BLUE=1F"
-set "COLOR_CYAN=3F"
-set "COLOR_WHITE=F0"
+set "COLOR_RED=[31m"
+set "COLOR_GREEN=[32m"
+set "COLOR_YELLOW=[33m"
+set "COLOR_CYAN=[36m"
+set "COLOR_RESET=[0m"
 
 :menu
 cls
@@ -35,8 +33,8 @@ if "%choice%"=="1" goto check_branch
 if "%choice%"=="2" goto create_branch
 if "%choice%"=="3" goto show_all_branches
 if "%choice%"=="4" goto change_branch
-if "%choice%"=="0" goto exit_script
 if "%choice%"=="5" goto merge_branch
+if "%choice%"=="0" goto exit_script
 
 echo Invalid choice. Please select a valid option.
 echo.
