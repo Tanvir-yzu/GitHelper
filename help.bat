@@ -260,5 +260,13 @@ if errorlevel 1 (
     echo %ICON_OK% %COLOR_GREEN%Git repository status displayed successfully.%COLOR_RESET%
 )
 
+:: Developer Information
+echo %SEP_LINE%
+echo %COLOR_CYAN%Developer Information:%COLOR_RESET%
+echo %ICON_STEP% Name: Tanvir
+echo %ICON_STEP% Contact: tanvir@example.com
+echo %ICON_STEP% GitHub: https://github.com/tanvir-yzu
+echo %SEP_LINE%
+
 echo %SEP_LINE%
 exit /b 0
