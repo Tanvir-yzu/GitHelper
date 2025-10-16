@@ -32,6 +32,8 @@ echo.
 :menu
 cls
 echo.
+:: Adjust Command Prompt window size for better readability
+mode con: cols=120 lines=40
 echo %SEP_LINE%
 echo          %COLOR_CYAN%Git Branch Management%COLOR_RESET%
 echo %SEP_LINE%
