@@ -225,7 +225,7 @@ if not defined CURRENT_BRANCH (
 )
 echo %ICON_STEP% %COLOR_YELLOW%Pulling latest changes from the current branch: %CURRENT_BRANCH%%COLOR_RESET%
 
-:: Perform git pull --rebase
+:: Perform git pull --rebase and show output
 git pull --rebase
 if errorlevel 1 (
     echo %ICON_FAIL% %COLOR_RED%Error: Unable to pull latest changes. Please check for errors.%COLOR_RESET%
@@ -248,4 +248,4 @@ echo %SEP_LINE%
 echo %COLOR_CYAN% Exiting script. Goodbye!%COLOR_RESET%
 echo %COLOR_YELLOW% Made by Tanvir%COLOR_RESET%
 echo %SEP_LINE%
-exit /b 0 
+exit /b 0
