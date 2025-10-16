@@ -40,6 +40,7 @@ echo %COLOR_GREEN%2.%COLOR_RESET% Create a new branch
 echo %COLOR_GREEN%3.%COLOR_RESET% Show all branches
 echo %COLOR_GREEN%4.%COLOR_RESET% Change branch
 echo %COLOR_GREEN%5.%COLOR_RESET% Branch Merging
+echo %COLOR_GREEN%6.%COLOR_RESET% Git pull rebase
 echo %COLOR_GREEN%0.%COLOR_RESET% Exit
 echo %SEP_LINE%
 set /p choice=%COLOR_YELLOW%Enter your choice [0-5]: %COLOR_RESET%
@@ -49,6 +50,8 @@ if "%choice%"=="2" goto create_branch
 if "%choice%"=="3" goto show_all_branches
 if "%choice%"=="4" goto change_branch
 if "%choice%"=="5" goto merge_branch
+if "%choice%"=="6" goto git_pull_rebase
+
 if "%choice%"=="0" goto exit_script
 
 echo Invalid choice. Please select a valid option.
@@ -201,6 +204,37 @@ if errorlevel 1 (
     goto menu
 )
 echo Branch "%branch_name%" successfully merged into "%CURRENT_BRANCH%".
+echo.
+pause
+goto menu
+
+:git_pull_rebase
+cls
+echo.
+echo %SEP_LINE%
+echo          %COLOR_CYAN%Git Pull Rebase%COLOR_RESET%
+echo %SEP_LINE%
+
+:: Display the current branch
+for /f "tokens=*" %%b in ('git rev-parse --abbrev-ref HEAD 2^>nul') do set CURRENT_BRANCH=%%b
+if not defined CURRENT_BRANCH (
+    echo %ICON_FAIL% %COLOR_RED%Error: Unable to determine the current branch. Please ensure you are in a Git repository.%COLOR_RESET%
+    echo.
+    pause
+    goto menu
+)
+echo %ICON_STEP% %COLOR_YELLOW%Pulling latest changes from the current branch: %CURRENT_BRANCH%%COLOR_RESET%
+
+:: Perform git pull --rebase
+git pull --rebase
+if errorlevel 1 (
+    echo %ICON_FAIL% %COLOR_RED%Error: Unable to pull latest changes. Please check for errors.%COLOR_RESET%
+    echo.
+    pause
+    goto menu
+)
+
+echo %ICON_OK% %COLOR_GREEN%Pull and rebase completed successfully on branch: %CURRENT_BRANCH%.%COLOR_RESET%
 echo.
 pause
 goto menu
