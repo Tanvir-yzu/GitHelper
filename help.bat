@@ -264,7 +264,7 @@ if errorlevel 1 (
 echo %SEP_LINE%
 echo %COLOR_CYAN%Developer Information:%COLOR_RESET%
 echo %ICON_STEP% Name: Tanvir
-echo %ICON_STEP% Contact: tanvir@example.com
+echo %ICON_STEP% Contact: 2020tanvir1971@gmail.com
 echo %ICON_STEP% GitHub: https://github.com/tanvir-yzu
 echo %SEP_LINE%
 
