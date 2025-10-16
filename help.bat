@@ -253,6 +253,7 @@ echo %COLOR_YELLOW%System Information:%COLOR_RESET%
 echo %ICON_STEP% Operating System: Windows
 echo %ICON_STEP% Current Directory: %CD%
 echo %ICON_STEP% Git Repository Status:
+echo %ICON_STEP% %COLOR_YELLOW%Git Repository Status:%COLOR_RESET%
 git status
 if errorlevel 1 (
     echo %ICON_FAIL% %COLOR_RED%Error: Unable to retrieve Git repository status.%COLOR_RESET%
