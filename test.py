@@ -1,2 +1,2 @@
 print("Tanvir")
-print(|sadman)
+print("sadman")
