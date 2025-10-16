@@ -245,7 +245,20 @@ goto menu
 cls
 echo.
 echo %SEP_LINE%
-echo %COLOR_CYAN% Exiting script. Goodbye!%COLOR_RESET%
-echo %COLOR_YELLOW% Made by Tanvir%COLOR_RESET%
+echo %COLOR_CYAN%Exiting script. Goodbye!%COLOR_RESET%
+echo %SEP_LINE%
+
+:: Show additional data before exiting
+echo %COLOR_YELLOW%System Information:%COLOR_RESET%
+echo %ICON_STEP% Operating System: Windows
+echo %ICON_STEP% Current Directory: %CD%
+echo %ICON_STEP% Git Repository Status:
+git status
+if errorlevel 1 (
+    echo %ICON_FAIL% %COLOR_RED%Error: Unable to retrieve Git repository status.%COLOR_RESET%
+) else (
+    echo %ICON_OK% %COLOR_GREEN%Git repository status displayed successfully.%COLOR_RESET%
+)
+
 echo %SEP_LINE%
 exit /b 0
