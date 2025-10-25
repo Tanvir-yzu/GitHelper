@@ -43,6 +43,7 @@ echo %COLOR_GREEN%3.%COLOR_RESET% Show all branches
 echo %COLOR_GREEN%4.%COLOR_RESET% Change branch
 echo %COLOR_GREEN%5.%COLOR_RESET% Branch Merging
 echo %COLOR_GREEN%6.%COLOR_RESET% Git pull rebase
+echo %COLOR_GREEN%7.%COLOR_RESET% Show changes (status + short diff)
 echo %COLOR_GREEN%0.%COLOR_RESET% Exit
 echo %SEP_LINE%
 set /p choice=%COLOR_YELLOW%Enter your choice [0-5]: %COLOR_RESET%
@@ -53,6 +54,7 @@ if "%choice%"=="3" goto show_all_branches
 if "%choice%"=="4" goto change_branch
 if "%choice%"=="5" goto merge_branch
 if "%choice%"=="6" goto git_pull_rebase
+if "%choice%"=="7" goto show_changes
 
 if "%choice%"=="0" goto exit_script
 
@@ -237,6 +239,24 @@ if errorlevel 1 (
 )
 
 echo %ICON_OK% %COLOR_GREEN%Pull and rebase completed successfully on branch: %CURRENT_BRANCH%.%COLOR_RESET%
+echo.
+pause
+goto menu
+
+:show_changes
+cls
+echo.
+echo %SEP_LINE%
+echo          %COLOR_CYAN%Working Tree Changes%COLOR_RESET%
+echo %SEP_LINE%
+echo %ICON_STEP% %COLOR_YELLOW%Status (porcelain):%COLOR_RESET%
+git status --porcelain
+echo.
+echo %ICON_STEP% %COLOR_YELLOW%Summary (diff --stat):%COLOR_RESET%
+git diff --stat
+echo.
+echo %ICON_STEP% %COLOR_YELLOW%Unstaged diff preview (first 50 lines):%COLOR_RESET%
+git diff | more +1
 echo.
 pause
 goto menu
