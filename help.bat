@@ -271,4 +271,8 @@ echo %ICON_STEP% GitHub: https://github.com/tanvir-yzu
 echo %SEP_LINE%
 
 echo %SEP_LINE%
+
+:play_success
+powershell -NoProfile -Command "[System.Media.SoundPlayer]::new('sounds\\success.wav').PlaySync()"
+goto :eof
 exit /b 0
