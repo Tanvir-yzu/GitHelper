@@ -249,14 +249,27 @@ echo.
 echo %SEP_LINE%
 echo          %COLOR_CYAN%Working Tree Changes%COLOR_RESET%
 echo %SEP_LINE%
+
+:: Verify this is a Git repository
+git rev-parse --is-inside-work-tree >nul 2>&1
+if errorlevel 1 (
+    echo %ICON_FAIL% %COLOR_RED%Not a Git repository here. Open a Git repo folder.%COLOR_RESET%
+    echo.
+    pause
+    goto menu
+)
+
 echo %ICON_STEP% %COLOR_YELLOW%Status (porcelain):%COLOR_RESET%
-git status --porcelain
+git status --porcelain 2>nul
+
 echo.
 echo %ICON_STEP% %COLOR_YELLOW%Summary (diff --stat):%COLOR_RESET%
-git diff --stat
+git diff --stat 2>nul
+
 echo.
 echo %ICON_STEP% %COLOR_YELLOW%Unstaged diff preview (first 50 lines):%COLOR_RESET%
-git diff | more +1
+powershell -NoProfile -Command "git diff --no-color | Select-Object -First 50"
+
 echo.
 pause
 goto menu
