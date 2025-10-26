@@ -1,106 +1,86 @@
 
-
-### **Modification Preview**
-
-#### File: `d:\Programming\GitHelper\README.md`
-
-**Current Content:**
-```markdown
 # GitHelper
 
 ## Overview
-GitHelper is a utility tool designed to simplify and enhance your Git workflow. It includes features such as automation scripts, sound notifications, and more.
+GitHelper is a Windows-friendly tool that streamlines common Git tasks through a guided, colorized Command Prompt UI. It helps you check branches, create/switch/merge, list branches, and pull with rebase — plus a clean exit summary showing system and repo info.
 
-## Features
-- **Automation**: Includes a `run.bat` script for streamlined operations.
-- **Sound Notifications**: Plays a success sound (`success.wav`) to indicate task completion.
-- **Testing**: Contains a `test.py` script for testing purposes.
-
-## Installation
-1. Clone the repository:
-   ```bash
-   git clone <repository-url>
-```
-
-**Proposed Content:**
-```markdown:/d:/Programming/GitHelper/README.md
-# GitHelper
-
-## Overview
-GitHelper is a utility tool designed to simplify and enhance your Git workflow. It provides automation scripts, sound notifications, and testing utilities to streamline your development process.
-
-## Features
-- **Automation**: Includes a `run.bat` script for executing common Git operations efficiently.
-- **Sound Notifications**: Plays a success sound (`sounds/success.wav`) to indicate task completion.
-- **Testing**: Contains a `test.py` script for validating functionality and testing features.
-- **Branch Management**: Includes a `help.bat` script for managing Git branches with a user-friendly interface.
+## Prerequisites
+- Windows (`cmd.exe`)
+- Git installed and available in `PATH`
+- Optional: enable ANSI colors for best UI
+  - Run:
+    ```cmd
+    REG ADD HKCU\Console /v VirtualTerminalLevel /t REG_DWORD /d 1
+    ```
+  - Restart Command Prompt
 
 ## Installation
 1. Clone the repository:
-   ```bash
+   ```cmd
    git clone <repository-url>
    ```
-2. Navigate to the project directory:
-   ```bash
+2. Enter the folder:
+   ```cmd
    cd GitHelper
    ```
-3. Run the `help.bat` script to explore features:
+3. Start the helper:
    ```cmd
    help.bat
    ```
 
+## Features
+- Modern UI with colored headers, icons, and separators
+- UTF‑8 mode (`chcp 65001`) for box-drawing characters
+- Menu options:
+  - `1` Current Git branch check  
+    Displays the current branch with a clear, colored header.
+  - `2` Create a new branch  
+    Prompts for a branch name, validates non-empty input, and creates the branch with error handling.
+  - `3` Show all branches  
+    Lists local and remote branches with a structured, colored layout.
+  - `4` Change branch  
+    Shows the current branch, lists and counts available branches, and checks out the selected one.
+  - `5` Branch Merging  
+    Shows the current branch, prompts for target branch, and merges with error handling.
+  - `6` Git pull rebase  
+    Detects the current branch and performs `git pull --rebase`, showing detailed output and errors.
+  - `0` Exit  
+    Displays system information (OS and current directory), `git status`, and developer info.
+
+### Additional Utilities
+- Show Changes (`:show_changes`)
+  - Status: `git status --porcelain`
+  - Summary: `git diff --stat`
+  - Diff preview: shows the start of the unstaged diff (truncated for readability)
+
+## Usage Notes
+- Run `help.bat` inside a Git repository for all features to work.
+- If colors/icons don’t render:
+  - Enable Virtual Terminal as shown in Prerequisites.
+  - Use a Unicode font like `Consolas` in Command Prompt.
+- The UI resizes the Command Prompt (`mode con: cols=120 lines=40`) for readability.
+
 ## Project Structure
 ```
 ├── README.md          # Project documentation
-├── help.bat           # Git branch management script
-├── run.bat            # Automation script
+├── help.bat           # Main helper script with UI
+├── run.bat            # Additional automation script
 ├── sounds/
-│   └── success.wav    # Sound notification for success
-└── test.py            # Testing script
+│   └── success.wav    # Success sound (optional)
+└── test.py            # Test script
 ```
 
-## Usage
-- **Git Branch Management**:
-  Run `help.bat` to manage branches, check the current branch, create new branches, and more.
-- **Automation**:
-  Use `run.bat` for automated Git operations.
-- **Testing**:
-  Execute `test.py` to validate functionality.
+## Troubleshooting
+- “Not a Git repository”: Run `help.bat` in a folder that contains a `.git` directory.
+- Unicode warnings: Some terminals may not fully support UTF‑8; the script still works with basic ASCII.
+- Branch operations fail: Ensure your repository is clean or stash changes before switching/merging.
+
+## Developer
+- Name: Tanvir  
+- Contact: 2020tanvir1971@gmail.com  
+- GitHub: https://github.com/tanvir-yzu
 
 ## License
-This project is licensed under the MIT License.
+Specify your license (e.g., MIT) here.
 ```
-
----
-
-### **Explanation of Changes**
-1. **Enhanced Overview**:
-   - Improved the description to make it more detailed and professional.
-
-2. **Expanded Features**:
-   - Added the `help.bat` script under features for branch management.
-   - Provided more details about each feature.
-
-3. **Detailed Installation Instructions**:
-   - Included steps for navigating to the project directory and running the main script.
-
-4. **Added Project Structure**:
-   - Provided a clear directory tree to help users understand the file organization.
-
-5. **Usage Section**:
-   - Added a section explaining how to use the main features of the project.
-
-6. **License Information**:
-   - Included a placeholder for the license type (e.g., MIT License).
-
----
-
-### **Usage Instructions**
-1. Save the updated `README.md` file.
-2. Review the content to ensure it aligns with your project goals.
-3. Share the updated `README.md` with your repository to provide clear documentation for users.
-
----
-
-
         
