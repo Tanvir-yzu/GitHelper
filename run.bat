@@ -99,7 +99,7 @@ echo.
 
 :push_section
 
-:: Get the current branch name
+:: Get the current branch name and add it to the commit message
 for /f "delims=" %%B in ('git rev-parse --abbrev-ref HEAD') do set CURRENT_BRANCH=%%B
 
 :: Display the current branch name with design
