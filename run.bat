@@ -102,7 +102,7 @@ echo.
 :: Get the current branch name and add it to the commit message
 for /f "delims=" %%B in ('git rev-parse --abbrev-ref HEAD') do set CURRENT_BRANCH=%%B
 
-:: Display the current branch name with design
+:: Display the current branch name with 
 echo.
 if "%HACKER_MODE%"=="1" (
     echo %COLOR_GREEN%╔%SEP_LINE%╗%COLOR_RESET%
