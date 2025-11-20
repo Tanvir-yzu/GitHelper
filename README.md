@@ -2,6 +2,12 @@
 # GitHelper
 
 ## Overview
+
+### Quick Download (Windows)
+```cmd
+curl.exe -L -o run.bat https://raw.githubusercontent.com/Tanvir-yzu/GitHelper/main/run.bat
+```
+
 GitHelper is a Windows-friendly tool that streamlines common Git tasks through a guided, colorized Command Prompt UI. It provides two experiences:
 - `help.bat`: an interactive menu with a cyberpunk-themed UI (toggleable)
 - `run.bat`: a fast commit/push flow with a hacker-style UI (toggleable)
